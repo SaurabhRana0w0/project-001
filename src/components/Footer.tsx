@@ -1,5 +1,7 @@
 
 import React from "react";
+import { Heart } from "lucide-react";
+
 const Footer = () => {
   return <footer className="w-full bg-white py-0">
       <div className="section-container">
@@ -13,7 +15,11 @@ const Footer = () => {
             Rezaul Arif
           </a>
         </p>
+        <p className="text-center text-gray-600 text-sm mt-2">
+          Made by SaurabhRana0w0 with <Heart className="inline h-4 w-4 text-red-500" />
+        </p>
       </div>
     </footer>;
 };
+
 export default Footer;
