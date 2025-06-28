@@ -22,6 +22,11 @@ const Navbar = () => {
     document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.style.overflow = '';
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -30,8 +35,7 @@ const Navbar = () => {
     
     // Close mobile menu if open
     if (isMenuOpen) {
-      setIsMenuOpen(false);
-      document.body.style.overflow = '';
+      closeMenu();
     }
   };
 
@@ -79,7 +83,7 @@ const Navbar = () => {
 
         {/* Mobile menu button - increased touch target */}
         <button 
-          className="md:hidden text-gray-700 p-3 focus:outline-none" 
+          className="md:hidden text-gray-700 p-3 focus:outline-none relative z-50" 
           onClick={toggleMenu}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
@@ -87,45 +91,64 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation - improved for better touch experience */}
+      {/* Mobile Navigation - improved with proper background and close button */}
       <div className={cn(
-        "fixed inset-0 z-40 bg-white flex flex-col pt-16 px-6 md:hidden transition-all duration-300 ease-in-out",
+        "fixed inset-0 z-40 md:hidden transition-all duration-300 ease-in-out",
         isMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
       )}>
-        <nav className="flex flex-col space-y-8 items-center mt-8">
-          <a 
-            href="#" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToTop();
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Home
-          </a>
-          <a 
-            href="#features" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            About
-          </a>
-          <a 
-            href="#details" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Contact
-          </a>
-        </nav>
+        {/* Background overlay */}
+        <div 
+          className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+          onClick={closeMenu}
+        />
+        
+        {/* Menu content */}
+        <div className="relative bg-white h-full flex flex-col">
+          {/* Header with close button */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
+            <img 
+              src="/logo.svg" 
+              alt="Pulse Robot Logo" 
+              className="h-7" 
+            />
+            <button 
+              className="text-gray-700 p-2 hover:bg-gray-100 rounded-lg transition-colors" 
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+          </div>
+          
+          {/* Navigation links */}
+          <nav className="flex flex-col p-6 space-y-4">
+            <a 
+              href="#" 
+              className="text-xl font-medium py-4 px-4 rounded-lg hover:bg-gray-100 transition-colors" 
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTop();
+                closeMenu();
+              }}
+            >
+              Home
+            </a>
+            <a 
+              href="#features" 
+              className="text-xl font-medium py-4 px-4 rounded-lg hover:bg-gray-100 transition-colors" 
+              onClick={closeMenu}
+            >
+              About
+            </a>
+            <a 
+              href="#details" 
+              className="text-xl font-medium py-4 px-4 rounded-lg hover:bg-gray-100 transition-colors" 
+              onClick={closeMenu}
+            >
+              Contact
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
   );
