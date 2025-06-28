@@ -3,7 +3,7 @@ import React from "react";
 import { Heart } from "lucide-react";
 
 const Footer = () => {
-  return <footer className="w-full bg-white py-0">
+  return <footer className="w-full bg-white py-0 border-t border-gray-200">
       <div className="section-container">
         <p className="text-center text-gray-600 text-sm">
           This template takes inspiration from{" "}
