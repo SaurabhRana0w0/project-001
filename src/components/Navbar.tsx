@@ -103,8 +103,8 @@ const Navbar = () => {
         />
         
         {/* Menu content */}
-        <div className="relative bg-white h-full flex flex-col">
-          {/* Header with close button */}
+        <div className="relative bg-white h-full w-full max-w-sm ml-auto flex flex-col">
+          {/* Header with logo and close button */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <img 
               src="/logo.svg" 
@@ -121,10 +121,10 @@ const Navbar = () => {
           </div>
           
           {/* Navigation links */}
-          <nav className="flex flex-col p-6 space-y-4">
+          <nav className="flex flex-col px-4 py-6 space-y-2">
             <a 
               href="#" 
-              className="text-xl font-medium py-4 px-4 rounded-lg hover:bg-gray-100 transition-colors" 
+              className="text-lg font-medium py-3 px-4 text-left rounded-lg hover:bg-gray-100 transition-colors" 
               onClick={(e) => {
                 e.preventDefault();
                 scrollToTop();
@@ -135,14 +135,14 @@ const Navbar = () => {
             </a>
             <a 
               href="#features" 
-              className="text-xl font-medium py-4 px-4 rounded-lg hover:bg-gray-100 transition-colors" 
+              className="text-lg font-medium py-3 px-4 text-left rounded-lg hover:bg-gray-100 transition-colors" 
               onClick={closeMenu}
             >
               About
             </a>
             <a 
               href="#details" 
-              className="text-xl font-medium py-4 px-4 rounded-lg hover:bg-gray-100 transition-colors" 
+              className="text-lg font-medium py-3 px-4 text-left rounded-lg hover:bg-gray-100 transition-colors" 
               onClick={closeMenu}
             >
               Contact
